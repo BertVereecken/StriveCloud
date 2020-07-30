@@ -11,7 +11,7 @@ const StyledText = styled.Text`
   color: ${({ color }) => color || 'black'};
   font-family: 'SFPro-Regular';
   font-size: ${({ size }) => size};
-  text-align: center;
+  text-align: ${({ textAlign }) => textAlign || 'start'};
   margin: ${({ margin }) => margin || 0};
   padding: ${({ padding }) => padding || 0};
 `;

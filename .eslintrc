@@ -1,6 +1,6 @@
 {
   "extends": "@react-native-community",
   "rules": {
-    "curly": [2, "multi"]
+    "curly": "off"
   }
 }

@@ -30,9 +30,7 @@ const FooterContent = styled.View`
   border-top-left-radius: ${BORDER_RADIUS};
 `;
 
-const Onboarding = ({
-  navigation,
-}: StackNavigationProps<Navigation, 'Onboarding'>) => {
+const Onboarding = ({ navigation }: StackNavigationProps<Navigation, 'Onboarding'>) => {
   const goToLoginComponent = useCallback(() => {
     navigation.navigate('Login');
   }, [navigation]);

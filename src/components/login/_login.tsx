@@ -97,7 +97,9 @@ const Login = ({ navigation }: StackNavigationProps<Navigation, 'Login'>) => {
           <StyledTitle size="1.5rem" margin="0 0 2rem 0">
             Log in here
           </StyledTitle>
-          <StyledText margin="0 0 2rem 0">Log in to start playing tournaments online</StyledText>
+          <StyledText textAlign="center" margin="0 0 2rem 0">
+            Log in to start playing tournaments online
+          </StyledText>
           <TextField
             name="email"
             autoCompleteType="email"

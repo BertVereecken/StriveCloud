@@ -2,12 +2,7 @@ import React, { useCallback, useState, useMemo } from 'react';
 import styled from 'styled-components/native';
 import { StyleSheet } from 'react-native';
 import { Button, TextField, Checkbox } from '../common';
-import {
-  Container,
-  StyledTitle,
-  StyledText,
-  BodyContainer,
-} from '../common/styledComponents';
+import { Container, StyledTitle, StyledText, BodyContainer } from '../common/styledComponents';
 import { StackNavigationProps, Navigation } from '../types';
 import { MailIcon, PasswordIcon, CheckboxIcon } from '../../../assets/svg';
 
@@ -47,9 +42,7 @@ interface IUserInputData {
   email: string;
   password: string;
 }
-const Register = ({
-  navigation,
-}: StackNavigationProps<Navigation, 'Register'>) => {
+const Register = ({ navigation }: StackNavigationProps<Navigation, 'Register'>) => {
   const [userInput, setUserInput] = useState<IUserInputData>({
     email: '',
     password: '',
@@ -60,7 +53,9 @@ const Register = ({
   }, [navigation]);
 
   const goToHomeScreen = useCallback(() => {
-    navigation.navigate('Home');
+    navigation.navigate('Home', {
+      userName: 'Arnaud',
+    });
   }, [navigation]);
 
   const handleUserInput = useCallback(
@@ -94,7 +89,7 @@ const Register = ({
           <StyledTitle size="1.5rem" margin="0 0 2rem 0">
             Create account
           </StyledTitle>
-          <StyledText margin="0 0 2rem 0">
+          <StyledText textAlign="center" margin="0 0 2rem 0">
             Let us know your name and password to create an account.
           </StyledText>
           <TextField
@@ -119,11 +114,7 @@ const Register = ({
               Forgot password?
             </StyledText>
           </Row>
-          <Button
-            label="Register"
-            disabled={!loginCredentialsAreValid}
-            onPress={goToHomeScreen}
-          />
+          <Button label="Register" disabled={!loginCredentialsAreValid} onPress={goToHomeScreen} />
         </BodyContainer>
       </MiddlePart>
       <BottomPart>
