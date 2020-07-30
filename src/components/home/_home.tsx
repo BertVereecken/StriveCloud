@@ -49,12 +49,9 @@ const Home = ({ navigation, route }: StackNavigationProps<Navigation, 'Home'>) =
       <HeaderPart>
         <StyledImage resizeMode="contain" source={striveCloudLogo} />
       </HeaderPart>
-
       <BodyContainer>
         <Tournaments data={data} />
       </BodyContainer>
-
-      <Text>fefef</Text>
     </Container>
   );
 };

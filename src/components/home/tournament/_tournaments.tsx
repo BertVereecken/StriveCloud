@@ -32,6 +32,7 @@ const Tournaments = ({ data }: ITournamentsProps) => {
   return (
     <FlatList
       data={data}
+      showsVerticalScrollIndicator={false}
       keyExtractor={(item) => item._id}
       renderItem={({ item, index, separators }) => {
         return <Tournament item={item} separators={separators} index={index} />;

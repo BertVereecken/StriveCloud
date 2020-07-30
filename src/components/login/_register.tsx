@@ -2,7 +2,7 @@ import React, { useCallback, useState, useMemo } from 'react';
 import styled from 'styled-components/native';
 import { StyleSheet } from 'react-native';
 import { Button, TextField, Checkbox } from '../common';
-import { Container, StyledTitle, StyledText, BodyContainer } from '../common/styledComponents';
+import { Container, StyledTitle, StyledText, BodyContainer, Row } from '../common/styledComponents';
 import { StackNavigationProps, Navigation } from '../types';
 import { MailIcon, PasswordIcon, CheckboxIcon } from '../../../assets/svg';
 
@@ -30,12 +30,6 @@ const BottomPart = styled.View`
   border-top-right-radius: 5rem;
   align-items: center;
   justify-content: center;
-`;
-
-const Row = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-  margin: ${({ margin }) => margin || 0};
 `;
 
 interface IUserInputData {
@@ -108,7 +102,7 @@ const Register = ({ navigation }: StackNavigationProps<Navigation, 'Register'>) 
             Icon={PasswordIcon}
             handleUserInput={handleUserInput}
           />
-          <Row margin="0 0 2rem 0">
+          <Row align="space-between" margin="0 0 2rem 0">
             <Checkbox label="Remember me" Icon={CheckboxIcon} />
             <StyledText size="0.8rem" color="rgba(57, 196, 182,1)">
               Forgot password?

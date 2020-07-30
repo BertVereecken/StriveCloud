@@ -16,3 +16,9 @@ export const BodyContainer = styled.View`
   align-content: center;
   padding: 0 2rem;
 `;
+
+export const Row = styled.View`
+  flex-direction: row;
+  justify-content: ${({ align }) => align || 'flex-start'};
+  margin: ${({ margin }) => margin || 0};
+`;
