@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Text } from 'react-native';
 import { Container, BodyContainer } from '../common';
 import { StackNavigationProps, Navigation } from '../types';
 import axios from 'axios';

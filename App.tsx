@@ -37,7 +37,7 @@ const App = () => {
     <LoadAssets>
       <SafeAreaProvider>
         <ThemeProvider theme={theme}>
-          <SafeAreaView style={{ flex: 1, backgroundColor: 'red' }}>
+          <SafeAreaView style={{ flex: 1 }}>
             <Stack.Navigator headerMode="none">
               <Stack.Screen name="Onboarding" component={Onboarding} />
               <Stack.Screen name="Login" component={Login} />

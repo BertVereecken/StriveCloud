@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { TouchableHighlight } from 'react-native-gesture-handler';
 import styled from 'styled-components/native';
 import { StyledText } from '../../common';
-import { ClockIcon } from '../../../../assets/svg';
+import { ClockIcon, PersonsIcon } from '../../../../assets/svg';
 import { Time } from './_time';
 import { Row } from '../../common/styledComponents';
 
@@ -44,21 +44,24 @@ const TournamentWrapper = styled.View`
 `;
 
 const LabelContainer = styled.View`
-  background-color: green;
+  background-color: ${({ bgColor, theme: { orange } }) => bgColor || orange};
   height: fit-content;
   width: fit-content;
   padding: 0.3rem;
   max-width: 8rem;
   max-height: 2rem;
   border-radius: 0.2rem;
+  flex-direction: row;
+  align-items: center;
 `;
 
-const Label = ({ label }: any) => {
+const Label = ({ label, children }: any) => {
   return (
     <LabelContainer>
-      <StyledText numberOfLines={1} size="0.7rem">
+      <StyledText numberOfLines={1} size="0.7rem" margin="0 0.5rem 0 0">
         {label}
       </StyledText>
+      {children && children}
     </LabelContainer>
   );
 };
@@ -81,7 +84,12 @@ const Tournament = ({ item, separators }: ITournamentProps) => {
           <ClockIcon />
           <Time Icon={ClockIcon} time={item.dateStart} />
         </Row>
-        <Label label={item.game} />
+        <Row align="space-between">
+          <Label label={item.game} />
+          <Label label={item.interested}>
+            <PersonsIcon width="0.8rem" height="0.8rem" />
+          </Label>
+        </Row>
       </TournamentWrapper>
     </TouchableHighlight>
   );

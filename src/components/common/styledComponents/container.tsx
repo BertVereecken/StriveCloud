@@ -21,4 +21,5 @@ export const Row = styled.View`
   flex-direction: row;
   justify-content: ${({ align }) => align || 'flex-start'};
   margin: ${({ margin }) => margin || 0};
+  align-items: center;
 `;
