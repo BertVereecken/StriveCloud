@@ -4,7 +4,7 @@ const StyledTitle = styled.Text`
   font-family: 'SFPro-Semibold';
   font-size: ${({ size }) => size};
   text-align: center;
-  margin: 2rem;
+  margin: ${({ margin }) => margin || '1rem 0'};
 `;
 
 const StyledText = styled.Text`

@@ -1,8 +1,13 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useMemo } from 'react';
 import styled from 'styled-components/native';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { Button, TextField, Checkbox } from '../common';
-import { Container, StyledTitle, StyledText } from '../common/styledComponents';
+import {
+  Container,
+  StyledTitle,
+  StyledText,
+  BodyContainer,
+} from '../common/styledComponents';
 import { StackNavigationProps, Navigation } from '../types';
 import { MailIcon, PasswordIcon, CheckboxIcon } from '../../../assets/svg';
 
@@ -16,7 +21,7 @@ const HeaderPart = styled.View`
   flex: 0.2;
   background-color: ${({ theme: { purple } }) => purple};
   border-bottom-right-radius: 5rem;
-  /* TODO: change the 5rem to a constant */
+  /* TODO: change the radius to a constant */
 `;
 
 const MiddlePart = styled.View`
@@ -35,7 +40,7 @@ const BottomPart = styled.View`
 const Row = styled.View`
   flex-direction: row;
   justify-content: space-between;
-  margin: 0 3rem;
+  margin: ${({ margin }) => margin || 0};
 `;
 
 interface IUserInputData {
@@ -54,7 +59,11 @@ const Register = ({
     navigation.goBack();
   }, [navigation]);
 
-  const validateUserInput = useCallback(
+  const goToHomeScreen = useCallback(() => {
+    navigation.navigate('Home');
+  }, [navigation]);
+
+  const handleUserInput = useCallback(
     (input: string, name: string) => {
       console.log(input, name);
       setUserInput({
@@ -62,8 +71,14 @@ const Register = ({
         [name]: input,
       });
     },
+
     [setUserInput, userInput],
   );
+
+  const loginCredentialsAreValid = useMemo(() => {
+    return userInput.email === 'test' && userInput.password === 'test';
+  }, [userInput]);
+
   return (
     <Container bgColor="white">
       <HeaderPart />
@@ -75,8 +90,10 @@ const Register = ({
             borderBottomLeftRadius: '7rem',
           }}
         />
-        <View>
-          <StyledTitle size="1.5rem">Create account</StyledTitle>
+        <BodyContainer>
+          <StyledTitle size="1.5rem" margin="0 0 2rem 0">
+            Create account
+          </StyledTitle>
           <StyledText margin="0 0 2rem 0">
             Let us know your name and password to create an account.
           </StyledText>
@@ -86,7 +103,7 @@ const Register = ({
             placeholder="example@gmail.com"
             textContentType="emailAddress"
             Icon={MailIcon}
-            validateUserInput={validateUserInput}
+            handleUserInput={handleUserInput}
           />
           <TextField
             name="password"
@@ -94,15 +111,20 @@ const Register = ({
             placeholder="password"
             textContentType="password"
             Icon={PasswordIcon}
-            validateUserInput={validateUserInput}
+            handleUserInput={handleUserInput}
           />
-          <Row>
+          <Row margin="0 0 2rem 0">
             <Checkbox label="Remember me" Icon={CheckboxIcon} />
             <StyledText size="0.8rem" color="rgba(57, 196, 182,1)">
               Forgot password?
             </StyledText>
           </Row>
-        </View>
+          <Button
+            label="Register"
+            disabled={!loginCredentialsAreValid}
+            onPress={goToHomeScreen}
+          />
+        </BodyContainer>
       </MiddlePart>
       <BottomPart>
         <Button label="Back" onPress={goBack} />

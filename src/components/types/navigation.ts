@@ -13,4 +13,6 @@ export type Navigation = {
   Onboarding: undefined;
   Login: undefined;
   Register: undefined;
+  Home: { userName: string } | undefined;
+  Settings: undefined;
 };

@@ -9,6 +9,7 @@ const theme = {
   semiBold: 'SFPro-Semibold',
   regular: 'SFPro-Regular',
   checkboxBackground: 'rgba(57, 196, 182,1)',
+  disabledButton: '#cccccc',
 };
 
 export { theme };

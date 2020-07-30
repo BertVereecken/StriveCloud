@@ -7,7 +7,7 @@ interface TextFieldProps {
   placeholder: string;
   textContentType: string;
   Icon: any;
-  validateUserInput: (input: string, name: string) => void;
+  handleUserInput: (input: string, name: string) => void;
 }
 
 const StyledTextField = styled.TextInput`
@@ -18,7 +18,7 @@ const StyledTextField = styled.TextInput`
 `;
 
 const Wrapper = styled.View`
-  margin: 0 3rem 1.5rem 3rem;
+  margin: 0 0 1.5rem 0;
   padding: 0 1rem;
   flex-direction: row;
   align-items: center;
@@ -32,15 +32,15 @@ const TextField = ({
   placeholder,
   textContentType,
   Icon,
-  validateUserInput,
+  handleUserInput,
   name,
 }: TextFieldProps) => {
   const handleChange = useCallback(
     (e) => {
       console.log(e, name);
-      validateUserInput(e, name);
+      handleUserInput(e, name);
     },
-    [validateUserInput],
+    [handleUserInput, name],
   );
   return (
     <Wrapper>
