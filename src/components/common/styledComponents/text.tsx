@@ -5,6 +5,7 @@ const StyledTitle = styled.Text`
   font-size: ${({ size }) => size};
   text-align: center;
   margin: ${({ margin }) => margin || '1rem 0'};
+  color: ${({ color }) => color || 'black'};
 `;
 
 const StyledText = styled.Text`

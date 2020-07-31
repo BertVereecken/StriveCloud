@@ -26,16 +26,24 @@ type TournamentProps = {
 
 interface ITournamentsProps {
   data: TournamentProps[];
+  openTournamentPage: (tournamentId: string) => void;
 }
 
-const Tournaments = ({ data }: ITournamentsProps) => {
+const Tournaments = ({ data, openTournamentPage }: ITournamentsProps) => {
   return (
     <FlatList
       data={data}
       showsVerticalScrollIndicator={false}
       keyExtractor={(item) => item._id}
       renderItem={({ item, index, separators }) => {
-        return <Tournament item={item} separators={separators} index={index} />;
+        return (
+          <Tournament
+            item={item}
+            separators={separators}
+            index={index}
+            openTournamentPage={openTournamentPage}
+          />
+        );
       }}
     />
   );

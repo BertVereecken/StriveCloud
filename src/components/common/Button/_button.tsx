@@ -6,6 +6,8 @@ interface ButtonProps {
   variant?: string;
   onPress: () => void;
   disabled?: boolean;
+  width?: string;
+  margin?: string;
 }
 
 const ButtonWrapper = styled.View`
@@ -13,18 +15,13 @@ const ButtonWrapper = styled.View`
   align-items: center;
 `;
 
-const StyledRectButton = styled.TouchableOpacity`
+const StyledButton = styled.TouchableOpacity`
   height: 3.5rem;
-  width: 13rem;
-  padding: 1rem 2rem;
+  width: ${({ width }) => width || '100%'};
   justify-content: center;
   align-items: center;
-  margin-bottom: 1.5rem;
-  ${({
-    variant,
-    disabled,
-    theme: { orange, purple, buttonBorderRadius, disabledButton },
-  }) =>
+  margin: ${({ margin }) => margin || '0 0.5rem 1.5rem 0.5rem'};
+  ${({ variant, disabled, theme: { orange, purple, buttonBorderRadius, disabledButton } }) =>
     !disabled
       ? `
     border-radius: ${buttonBorderRadius}
@@ -49,12 +46,20 @@ const Button = ({
   variant = 'primary',
   onPress,
   disabled = false,
+  width,
+  margin,
 }: ButtonProps) => {
   return (
     <ButtonWrapper>
-      <StyledRectButton onPress={onPress} variant={variant} disabled={disabled}>
+      <StyledButton
+        onPress={onPress}
+        variant={variant}
+        disabled={disabled}
+        width={width}
+        margin={margin}
+      >
         <ButtonText variant={variant}>{label}</ButtonText>
-      </StyledRectButton>
+      </StyledButton>
     </ButtonWrapper>
   );
 };

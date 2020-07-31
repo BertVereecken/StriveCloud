@@ -8,3 +8,4 @@ export {
 } from './styledComponents';
 export { theme } from './theme';
 export { TextField, Checkbox } from './fields';
+export { Label } from './Label';

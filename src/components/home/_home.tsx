@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Container, BodyContainer } from '../common';
+import React, { useEffect, useState, useCallback } from 'react';
+import { Container, BodyContainer, StyledText } from '../common';
 import { StackNavigationProps, Navigation } from '../types';
 import axios from 'axios';
 import styled from 'styled-components/native';
@@ -25,23 +25,33 @@ const StyledImage = styled.Image`
 const Home = ({ navigation, route }: StackNavigationProps<Navigation, 'Home'>) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
-  const fetchTournaments = async () => {
+  const fetchTournaments = useCallback(async () => {
     try {
       setLoading(true);
       const { data: tournaments } = await axios.get(UPCOMING_EVENTS_URL);
 
       setData(tournaments);
+      setLoading(false);
     } catch (err) {
+      setError(true);
       console.log(err);
       throw err;
     }
-  };
-
-  useEffect(() => {
-    fetchTournaments();
   }, []);
 
+  // Fetch upcoming tournaments as soon as components renders
+  useEffect(() => {
+    fetchTournaments();
+  }, [fetchTournaments]);
+
+  const openTournamentPage = (tournamentId: string) => {
+    console.log(tournamentId);
+    navigation.navigate('TournamentDetails', {
+      tournamentId,
+    });
+  };
   console.log(data);
   return (
     <Container>
@@ -49,7 +59,9 @@ const Home = ({ navigation, route }: StackNavigationProps<Navigation, 'Home'>) =
         <StyledImage resizeMode="contain" source={striveCloudLogo} />
       </HeaderPart>
       <BodyContainer>
-        <Tournaments data={data} />
+        {loading && <StyledText> Loading</StyledText>}
+        {error && <StyledText> Error</StyledText>}
+        {!loading && !error && <Tournaments data={data} openTournamentPage={openTournamentPage} />}
       </BodyContainer>
     </Container>
   );

@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { TouchableHighlight } from 'react-native-gesture-handler';
 import styled from 'styled-components/native';
-import { StyledText } from '../../common';
+import { StyledText, Label } from '../../common';
 import { ClockIcon, PersonsIcon } from '../../../../assets/svg';
 import { Time } from './_time';
 import { Row } from '../../common/styledComponents';
@@ -31,7 +31,8 @@ type Tournament = {
 interface ITournamentProps {
   item: Tournament;
   separators: any;
-  index: number;
+  index?: number;
+  openTournamentPage: (tournamentId: string) => void;
 }
 
 const TournamentWrapper = styled.View`
@@ -43,52 +44,35 @@ const TournamentWrapper = styled.View`
   padding: 0.5rem;
 `;
 
-const LabelContainer = styled.View`
-  background-color: ${({ bgColor, theme: { orange } }) => bgColor || orange};
-  height: fit-content;
-  width: fit-content;
-  padding: 0.3rem;
-  max-width: 8rem;
-  max-height: 2rem;
-  border-radius: 0.2rem;
-  flex-direction: row;
-  align-items: center;
-`;
-
-const Label = ({ label, children }: any) => {
-  return (
-    <LabelContainer>
-      <StyledText numberOfLines={1} size="0.7rem" margin="0 0.5rem 0 0">
-        {label}
-      </StyledText>
-      {children && children}
-    </LabelContainer>
-  );
-};
-const Tournament = ({ item, separators }: ITournamentProps) => {
+const Tournament = ({ item, separators, openTournamentPage }: ITournamentProps) => {
   const handlePress = useCallback(() => {
     console.log(item);
-  }, [item]);
+
+    openTournamentPage(item._id);
+  }, [item, openTournamentPage]);
 
   return (
     <TouchableHighlight
+      style={{ border: '1px solid red' }}
       onPress={handlePress}
       onShowUnderlay={separators.highlight}
       onHideUnderlay={separators.unhighlight}
     >
-      <TournamentWrapper>
+      <TournamentWrapper style={{ border: '1px solid red' }}>
         <StyledText numberOfLines={1} size="0.8rem">
           {item.name}
         </StyledText>
         <Row>
-          <ClockIcon />
           <Time Icon={ClockIcon} time={item.dateStart} />
         </Row>
         <Row align="space-between">
           <Label label={item.game} />
-          <Label label={item.interested}>
-            <PersonsIcon width="0.8rem" height="0.8rem" />
-          </Label>
+          <Label
+            label={item.interested}
+            IconRight={PersonsIcon}
+            iconHeight="0.8rem"
+            iconWidth="0.8rem"
+          />
         </Row>
       </TournamentWrapper>
     </TouchableHighlight>

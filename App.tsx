@@ -2,7 +2,15 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Onboarding, LoadAssets, Login, Register, Home, Settings } from './src/components';
+import {
+  Onboarding,
+  LoadAssets,
+  Login,
+  Register,
+  Home,
+  Settings,
+  TournamentsDetails,
+} from './src/components';
 import { ThemeProvider } from 'styled-components/native';
 import { theme } from './src/components/common';
 import type { Navigation } from './src/components/types';
@@ -12,7 +20,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 const Stack = createStackNavigator<Navigation>();
 const Tab = createBottomTabNavigator();
 
-const BottomTabs = () => {
+const HomeWithTabs = () => {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -32,6 +40,7 @@ const BottomTabs = () => {
     </Tab.Navigator>
   );
 };
+
 const App = () => {
   return (
     <LoadAssets>
@@ -42,7 +51,8 @@ const App = () => {
               <Stack.Screen name="Onboarding" component={Onboarding} />
               <Stack.Screen name="Login" component={Login} />
               <Stack.Screen name="Register" component={Register} />
-              <Stack.Screen name="Home" component={BottomTabs} />
+              <Stack.Screen name="Home" component={HomeWithTabs} />
+              <Stack.Screen name="TournamentDetails" component={TournamentsDetails} />
             </Stack.Navigator>
           </SafeAreaView>
         </ThemeProvider>

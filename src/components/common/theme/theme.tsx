@@ -4,6 +4,7 @@ const theme = {
   purple: 'rgba(38, 10, 145, 1)',
   orange: 'rgba(255, 153, 51, 1)',
   lightGrey: '#ececec',
+  blue: '#2091fd',
   buttonBorderRadius: '3rem',
   bold: 'SFPro-Bold',
   semiBold: 'SFPro-Semibold',

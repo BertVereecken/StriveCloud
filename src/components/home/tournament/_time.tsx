@@ -1,9 +1,14 @@
-import React from 'react';
-import styled from 'styled-components/native';
-import { View } from 'react-native';
+import React, { ElementType } from 'react';
 import { StyledText } from '../../common';
+import { Row } from '../../common/styledComponents';
 
-const Time = ({ time }: any) => {
+interface ITimeProps {
+  time: string;
+  Icon: ElementType;
+  color?: string;
+}
+
+const Time = ({ time, Icon, color }: ITimeProps) => {
   const formattedTime = () => {
     const unformattedDate = new Date(time);
     const newDate = unformattedDate.toLocaleString('nl-BE', {
@@ -18,9 +23,10 @@ const Time = ({ time }: any) => {
   };
 
   return (
-    <View>
-      <StyledText>{formattedTime()}</StyledText>
-    </View>
+    <Row>
+      {Icon && <Icon style={{ marginRight: '0.3rem', color }} />}
+      <StyledText color={color}>{formattedTime()}</StyledText>
+    </Row>
   );
 };
 

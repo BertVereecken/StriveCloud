@@ -15,4 +15,5 @@ export type Navigation = {
   Register: undefined;
   Home: { userName: string } | undefined;
   Settings: undefined;
+  TournamentDetails: { tournamentId: string };
 };
