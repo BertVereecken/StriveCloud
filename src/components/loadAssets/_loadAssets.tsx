@@ -17,13 +17,9 @@ const LoadAssets = ({ children }: LoadAssetsProps) => {
   useEffect(() => {
     const restoreState = async () => {
       try {
-        const savedStateString = await AsyncStorage.getItem(
-          NAVIGATION_STATE_KEY,
-        );
+        const savedStateString = await AsyncStorage.getItem(NAVIGATION_STATE_KEY);
 
-        const state = savedStateString
-          ? JSON.parse(savedStateString)
-          : undefined;
+        const state = savedStateString ? JSON.parse(savedStateString) : undefined;
 
         setInitialState(state);
       } finally {
@@ -35,8 +31,7 @@ const LoadAssets = ({ children }: LoadAssetsProps) => {
   }, [isNavigationReady]);
 
   const onStateChange = useCallback(
-    (state) =>
-      AsyncStorage.setItem(NAVIGATION_STATE_KEY, JSON.stringify(state)),
+    (state) => AsyncStorage.setItem(NAVIGATION_STATE_KEY, JSON.stringify(state)),
     [],
   );
 
@@ -48,11 +43,7 @@ const LoadAssets = ({ children }: LoadAssetsProps) => {
 
   if (!fontsLoaded) return <AppLoading />;
 
-  return (
-    <NavigationContainer {...{ onStateChange, initialState }}>
-      {children}
-    </NavigationContainer>
-  );
+  return <NavigationContainer {...{ onStateChange, initialState }}>{children}</NavigationContainer>;
 };
 
 export { LoadAssets };

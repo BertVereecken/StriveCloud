@@ -1,45 +1,16 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { StyledText, Button, Container, StyledTitle, BodyContainer } from '../../common';
-import { View } from 'react-native';
+import { StyledText, Button, Container, StyledTitle, BodyContainer, Spinner } from '../../common';
 import axios from 'axios';
 import { Navigation, StackNavigationProps } from '../../types';
 import styled from 'styled-components/native';
 import { Time } from './_time';
 import { ClockIcon } from '../../../../assets/svg';
-import { PrizePool } from './_prizePool';
+import { PrizePoolInfo } from './_prizePool';
 import { Row } from '../../common/styledComponents';
-import { GameMode } from './_gameMode';
+import { GameModeInfo } from './_gameMode';
+import { Tournament } from './_tournamentTypes';
 
 const TOURNAMENT_DETAILS_BASE_URL = 'https://api.kayzr.com/api/tournaments/';
-
-type GameMode = {
-  games: string[];
-  id: string;
-  name: string;
-  teamSize: number;
-};
-
-type GameImage = {
-  type: string;
-  url: string;
-};
-
-type PrizePool = {
-  amount: number;
-  currency: string;
-  poolLimit: number;
-};
-
-type Tournament = {
-  gameMode: GameMode;
-  id: string;
-  images: GameImage[];
-  interested: number;
-  name: string;
-  prizepool: PrizePool[];
-  startAt: string;
-  tournamentPage: string;
-};
 
 const BannerWrapper = styled.View``;
 
@@ -107,7 +78,7 @@ const TournamentsDetails = ({
 
   return (
     <Container>
-      {loading && <StyledText>Loading ... </StyledText>}
+      {loading && <Spinner />}
       {data && !loading && !error && (
         <>
           <BannerWrapper>
@@ -121,8 +92,8 @@ const TournamentsDetails = ({
           </BannerWrapper>
 
           <BodyContainer style={{ alignItems: 'center' }}>
-            <GameMode gameMode={data.gameMode} />
-            <PrizePool prizePoolData={data.prizepool} />
+            <GameModeInfo gameMode={data.gameMode} />
+            <PrizePoolInfo prizePoolData={data.prizepool} />
             <Row>
               <Button label="Invite Friends" width="8rem" />
               <Button label="Sign up" width="8rem" />

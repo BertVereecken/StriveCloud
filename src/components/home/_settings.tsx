@@ -1,13 +1,14 @@
 import React from 'react';
-import { Container, Button } from '../common';
-import { Text } from 'react-native';
+import { Container, Button, BodyContainer, StyledTitle } from '../common';
 import { StackNavigationProps, Navigation } from '../types';
 
 const Settings = ({ navigation, route }: StackNavigationProps<Navigation, 'Settings'>) => {
   return (
     <Container>
-      <Text>Settings</Text>
-      <Button label="logout" onPress={() => navigation.navigate('Onboarding')} />
+      <BodyContainer>
+        <StyledTitle>Settings</StyledTitle>
+        <Button label="logout" onPress={() => navigation.navigate('Onboarding')} />
+      </BodyContainer>
     </Container>
   );
 };

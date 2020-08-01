@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { Container, BodyContainer, StyledText } from '../common';
+import { Container, BodyContainer, StyledText, Spinner, StyledLogo } from '../common';
 import { StackNavigationProps, Navigation } from '../types';
 import axios from 'axios';
 import styled from 'styled-components/native';
@@ -14,12 +14,6 @@ const HeaderPart = styled.View`
   border-bottom-right-radius: 5rem;
   justify-content: center;
   align-items: center;
-  /* TODO: change the radius to a constant */
-`;
-
-const StyledImage = styled.Image`
-  width: 10rem;
-  height: 4rem;
 `;
 
 const Home = ({ navigation, route }: StackNavigationProps<Navigation, 'Home'>) => {
@@ -41,26 +35,30 @@ const Home = ({ navigation, route }: StackNavigationProps<Navigation, 'Home'>) =
     }
   }, []);
 
-  // Fetch upcoming tournaments as soon as components renders
+  // Fetch upcoming tournaments
   useEffect(() => {
     fetchTournaments();
   }, [fetchTournaments]);
 
+  /**
+   * Open tournamentsDetailsPage and pass the tournamentId.
+   * @param tournamentId
+   */
   const openTournamentPage = (tournamentId: string) => {
-    console.log(tournamentId);
     navigation.navigate('TournamentDetails', {
       tournamentId,
     });
   };
+
   console.log(data);
   return (
     <Container>
       <HeaderPart>
-        <StyledImage resizeMode="contain" source={striveCloudLogo} />
+        <StyledLogo resizeMode="contain" source={striveCloudLogo} />
       </HeaderPart>
       <BodyContainer>
-        {loading && <StyledText> Loading</StyledText>}
-        {error && <StyledText> Error</StyledText>}
+        {loading && <Spinner />}
+        {error && <StyledText>Error</StyledText>}
         {!loading && !error && <Tournaments data={data} openTournamentPage={openTournamentPage} />}
       </BodyContainer>
     </Container>

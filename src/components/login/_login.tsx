@@ -8,10 +8,13 @@ import {
   StyledText,
   TextField,
   Checkbox,
+  StyledLogo,
 } from '../common';
 import { MailIcon, PasswordIcon, CheckboxIcon } from '../../../assets/svg';
 import { Navigation, StackNavigationProps } from '../types';
 import { StyleSheet } from 'react-native';
+
+const striveCloudLogo = require('../../../assets/images/logo.png');
 
 const StyledView = styled.View`
   flex: 1;
@@ -23,7 +26,8 @@ const HeaderPart = styled.View`
   flex: 0.2;
   background-color: ${({ theme: { purple } }) => purple};
   border-bottom-right-radius: 5rem;
-  /* TODO: change the radius to a constant */
+  align-items: center;
+  justify-content: center;
 `;
 
 const MiddlePart = styled.View`
@@ -84,7 +88,9 @@ const Login = ({ navigation }: StackNavigationProps<Navigation, 'Login'>) => {
 
   return (
     <Container bgColor="white">
-      <HeaderPart />
+      <HeaderPart>
+        <StyledLogo resizeMode="contain" source={striveCloudLogo} />
+      </HeaderPart>
       <MiddlePart>
         <StyledView
           bgColor="white"
@@ -126,7 +132,7 @@ const Login = ({ navigation }: StackNavigationProps<Navigation, 'Login'>) => {
         </BodyContainer>
       </MiddlePart>
       <BottomPart>
-        <Button label="Back" onPress={goBack} />
+        <Button width="5rem" label="Back" onPress={goBack} />
       </BottomPart>
     </Container>
   );

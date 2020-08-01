@@ -2,9 +2,18 @@ import React, { useCallback, useState, useMemo } from 'react';
 import styled from 'styled-components/native';
 import { StyleSheet } from 'react-native';
 import { Button, TextField, Checkbox } from '../common';
-import { Container, StyledTitle, StyledText, BodyContainer, Row } from '../common/styledComponents';
+import {
+  Container,
+  StyledTitle,
+  StyledText,
+  BodyContainer,
+  Row,
+  StyledLogo,
+} from '../common/styledComponents';
 import { StackNavigationProps, Navigation } from '../types';
 import { MailIcon, PasswordIcon, CheckboxIcon } from '../../../assets/svg';
+
+const striveCloudLogo = require('../../../assets/images/logo.png');
 
 const StyledView = styled.View`
   flex: 1;
@@ -16,7 +25,8 @@ const HeaderPart = styled.View`
   flex: 0.2;
   background-color: ${({ theme: { purple } }) => purple};
   border-bottom-right-radius: 5rem;
-  /* TODO: change the radius to a constant */
+  align-items: center;
+  justify-content: center;
 `;
 
 const MiddlePart = styled.View`
@@ -70,7 +80,9 @@ const Register = ({ navigation }: StackNavigationProps<Navigation, 'Register'>) 
 
   return (
     <Container bgColor="white">
-      <HeaderPart />
+      <HeaderPart>
+        <StyledLogo resizeMode="contain" source={striveCloudLogo} />
+      </HeaderPart>
       <MiddlePart>
         <StyledView
           bgColor="white"
@@ -112,7 +124,7 @@ const Register = ({ navigation }: StackNavigationProps<Navigation, 'Register'>) 
         </BodyContainer>
       </MiddlePart>
       <BottomPart>
-        <Button label="Back" onPress={goBack} />
+        <Button width="5rem" label="Back" onPress={goBack} />
       </BottomPart>
     </Container>
   );

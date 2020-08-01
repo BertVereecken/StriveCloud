@@ -2,6 +2,7 @@ import React from 'react';
 import { View, StyleSheet, Dimensions } from 'react-native';
 const { width, height } = Dimensions.get('window');
 import styled from 'styled-components/native';
+import { Container } from '../../common';
 export const SLIDE_HEIGHT = 0.6 * height;
 
 interface SlideProps {
@@ -18,16 +19,11 @@ const styles = StyleSheet.create({
   },
   label: {
     color: 'white',
-    // textAlign: 'center',
     fontFamily: 'SFPro-Bold',
     fontSize: 50,
     lineHeight: 50,
   },
 });
-
-const Container = styled.View`
-  width: ${width};
-`;
 
 const Label = styled.Text`
   color: white;

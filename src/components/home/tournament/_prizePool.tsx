@@ -1,46 +1,44 @@
 import React from 'react';
 import { StyledText } from '../../common';
 import styled from 'styled-components/native';
-import { Row } from '../../common/styledComponents';
-
-type PrizePool = {
-  amount: number;
-  currency: string;
-  poolLimit: number;
-};
+import { StyledTitle } from '../../common/styledComponents';
+import { PrizePool } from './_tournamentTypes';
 
 interface IPrizePoolProps {
   prizePoolData: PrizePool[];
 }
 
 const Box = styled.View`
-  border: 1px solid green;
   flex: ${({ flex }) => flex || 1};
   flex-direction: ${({ direction }) => direction || 'column'};
   padding: ${({ padding }) => padding || 0};
   width: ${({ width }) => width || '100%'};
-  justify-content: center;
+  justify-content: ${({ justifyContent }) => justifyContent || 'center'};
   margin: ${({ margin }) => margin || '0'};
 `;
 
-const PrizePool = ({ prizePoolData }: IPrizePoolProps) => {
-  console.log(prizePoolData);
+const PrizePoolInfo = ({ prizePoolData }: IPrizePoolProps) => {
   return (
-    <Box flex={0.2} padding="1rem" margin="0 0 1rem 0" width="75%">
-      <Row align="space-evenly" margin="0 0 0.5rem 0">
-        <StyledText>Amount:</StyledText>
+    <Box flex={0.3} direction="row" margin="0 0 1rem 0">
+      {/* COLUMN 1 */}
+      <Box
+        style={{ backgroundColor: 'red' }}
+        padding="1rem"
+        justifyContent="space-around"
+        flex={0.5}
+      >
+        <StyledTitle margin="0">Amount:</StyledTitle>
+        <StyledTitle margin="0">Currency:</StyledTitle>
+        <StyledTitle margin="0">Poollimit:</StyledTitle>
+      </Box>
+      {/* COLUMN 2 */}
+      <Box style={{ backgroundColor: 'green' }} padding="1rem" justifyContent="space-around">
         <StyledText>{prizePoolData[0].amount}</StyledText>
-      </Row>
-      <Row align="space-evenly" margin="0 0 0.5rem 0">
-        <StyledText>Currency:</StyledText>
         <StyledText>{prizePoolData[0].currency}</StyledText>
-      </Row>
-      <Row align="space-evenly" margin="0 0 0.5rem 0">
-        <StyledText>Poollimit:</StyledText>
         <StyledText>{prizePoolData[0].poolLimit}</StyledText>
-      </Row>
+      </Box>
     </Box>
   );
 };
 
-export { PrizePool };
+export { PrizePoolInfo };

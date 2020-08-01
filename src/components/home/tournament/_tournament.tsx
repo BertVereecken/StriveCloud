@@ -1,35 +1,11 @@
 import React, { useCallback } from 'react';
-import { TouchableHighlight } from 'react-native-gesture-handler';
 import styled from 'styled-components/native';
-import { StyledText, Label } from '../../common';
+import { StyledText, Label, Row } from '../../common';
 import { ClockIcon, PersonsIcon } from '../../../../assets/svg';
 import { Time } from './_time';
-import { Row } from '../../common/styledComponents';
-
-type PrizePool = {
-  amount: number;
-  currency: string;
-  poolLimit: number;
-};
-
-type Tournament = {
-  checkinClose: string;
-  checkinOpen: string;
-  date: string;
-  dateEnd: string;
-  dateStart: string;
-  game: string;
-  interested: number;
-  location: string;
-  name: string;
-  platform: string;
-  prizePool: PrizePool[];
-  tournamentPage: string;
-  _id: string;
-};
-
+import { UpComingTournament } from './_tournamentTypes';
 interface ITournamentProps {
-  item: Tournament;
+  item: UpComingTournament;
   separators: any;
   index?: number;
   openTournamentPage: (tournamentId: string) => void;
@@ -44,6 +20,10 @@ const TournamentWrapper = styled.View`
   padding: 0.5rem;
 `;
 
+const StyledTouchableHightlight = styled.TouchableHighlight`
+  border-radius: 0.5rem;
+`;
+
 const Tournament = ({ item, separators, openTournamentPage }: ITournamentProps) => {
   const handlePress = useCallback(() => {
     console.log(item);
@@ -52,13 +32,13 @@ const Tournament = ({ item, separators, openTournamentPage }: ITournamentProps) 
   }, [item, openTournamentPage]);
 
   return (
-    <TouchableHighlight
-      style={{ border: '1px solid red' }}
+    <StyledTouchableHightlight
+      underlayColor="lightgrey"
       onPress={handlePress}
       onShowUnderlay={separators.highlight}
       onHideUnderlay={separators.unhighlight}
     >
-      <TournamentWrapper style={{ border: '1px solid red' }}>
+      <TournamentWrapper>
         <StyledText numberOfLines={1} size="0.8rem">
           {item.name}
         </StyledText>
@@ -75,7 +55,7 @@ const Tournament = ({ item, separators, openTournamentPage }: ITournamentProps) 
           />
         </Row>
       </TournamentWrapper>
-    </TouchableHighlight>
+    </StyledTouchableHightlight>
   );
 };
 

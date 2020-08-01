@@ -34,9 +34,7 @@ const Checkbox = ({ label, Icon }: CheckboxFieldProps) => {
   return (
     <Wrapper onPress={toggleCheckBox}>
       <CheckBoxWrapper checked={checked}>
-        {checked && (
-          <Icon stroke={checked && 'white'} width="0.9rem" height="0.9rem" />
-        )}
+        {checked && <Icon stroke={checked && 'white'} width="0.9rem" height="0.9rem" />}
       </CheckBoxWrapper>
       <StyledText size="0.8rem" padding="0 1rem">
         {label}
