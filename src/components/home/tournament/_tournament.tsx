@@ -8,7 +8,7 @@ interface ITournamentProps {
   item: UpComingTournament;
   separators: any;
   index?: number;
-  openTournamentPage: (tournamentId: string) => void;
+  openTournamentPage: (tournamentInfo: UpComingTournament) => void;
 }
 
 const TournamentWrapper = styled.View`
@@ -28,7 +28,7 @@ const Tournament = ({ item, separators, openTournamentPage }: ITournamentProps) 
   const handlePress = useCallback(() => {
     console.log(item);
 
-    openTournamentPage(item._id);
+    openTournamentPage(item);
   }, [item, openTournamentPage]);
 
   return (

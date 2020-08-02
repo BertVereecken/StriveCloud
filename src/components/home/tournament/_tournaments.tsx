@@ -1,11 +1,11 @@
 import React from 'react';
-import { FlatList } from 'react-native-gesture-handler';
 import { Tournament } from './_tournament';
 import { UpComingTournament } from './_tournamentTypes';
+import { FlatList } from 'react-native';
 
 interface ITournamentsProps {
   data: UpComingTournament[];
-  openTournamentPage: (tournamentId: string) => void;
+  openTournamentPage: (tournamentInfo: UpComingTournament) => void;
 }
 
 const Tournaments = ({ data, openTournamentPage }: ITournamentsProps) => {

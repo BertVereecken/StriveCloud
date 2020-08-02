@@ -23,3 +23,14 @@ export const Row = styled.View`
   margin: ${({ margin }) => margin || 0};
   align-items: center;
 `;
+
+export const Box = styled.View`
+  flex: ${({ flex }) => flex || 1};
+  flex-direction: ${({ direction }) => direction || 'column'};
+  padding: ${({ padding }) => padding || 0};
+  width: ${({ width }) => width || '100%'};
+  justify-content: ${({ justifyContent }) => justifyContent || 'center'};
+  margin: ${({ margin }) => margin || '0'};
+  border-radius: ${({ radius }) => radius || '0'};
+  background-color: ${({ bgColor }) => bgColor || 'transparent'};
+`;

@@ -1,5 +1,6 @@
 import { StackNavigationProp } from '@react-navigation/stack';
 import { ParamListBase, RouteProp } from '@react-navigation/native';
+import { UpComingTournament } from '../home/tournament/_tournamentTypes';
 
 export interface StackNavigationProps<
   ParamList extends ParamListBase,
@@ -15,5 +16,5 @@ export type Navigation = {
   Register: undefined;
   Home: { userName: string } | undefined;
   Settings: undefined;
-  TournamentDetails: { tournamentId: string };
+  TournamentDetails: { tournamentInfo: UpComingTournament };
 };

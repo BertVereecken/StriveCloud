@@ -45,9 +45,10 @@ const TournamentsDetails = ({
   const [error, setError] = useState(false);
 
   console.log(data);
-  const tournamentId = useMemo(() => {
-    return route.params.tournamentId;
-  }, [route.params.tournamentId]);
+  const tournamentInfo = useMemo(() => {
+    console.log(route.params.tournamentInfo);
+    return route.params.tournamentInfo;
+  }, [route.params.tournamentInfo]);
 
   const goBack = useCallback(() => {
     navigation.goBack();
@@ -58,7 +59,7 @@ const TournamentsDetails = ({
       setLoading(true);
 
       const { data: tournamentDetails } = await axios.get(
-        `${TOURNAMENT_DETAILS_BASE_URL}${tournamentId}`,
+        `${TOURNAMENT_DETAILS_BASE_URL}${tournamentInfo._id}`,
       );
 
       setData(tournamentDetails);
@@ -68,13 +69,13 @@ const TournamentsDetails = ({
       setError(true);
       throw err;
     }
-  }, [tournamentId]);
+  }, [tournamentInfo._id]);
 
   useEffect(() => {
-    if (!tournamentId) return;
+    if (!tournamentInfo._id) return;
 
     fetchTournamentDetails();
-  }, [fetchTournamentDetails, tournamentId]);
+  }, [fetchTournamentDetails, tournamentInfo._id]);
 
   return (
     <Container>
@@ -92,7 +93,7 @@ const TournamentsDetails = ({
           </BannerWrapper>
 
           <BodyContainer style={{ alignItems: 'center' }}>
-            <GameModeInfo gameMode={data.gameMode} />
+            <GameModeInfo gameMode={data.gameMode} tournamentInfo={tournamentInfo} />
             <PrizePoolInfo prizePoolData={data.prizepool} />
             <Row>
               <Button label="Invite Friends" width="8rem" />

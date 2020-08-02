@@ -26,7 +26,7 @@ const Label = ({ label, IconLeft, IconRight, iconWidth, iconHeight }: ILabelProp
   return (
     <LabelContainer>
       {IconLeft && <IconLeft width={iconWidth} height={iconHeight} />}
-      <StyledText numberOfLines={1} size="0.7rem" margin="0 0.5rem 0 0">
+      <StyledText numberOfLines={1} size="0.7rem" margin="0 0.5rem">
         {label}
       </StyledText>
       {IconRight && <IconRight width={iconWidth} height={iconHeight} />}

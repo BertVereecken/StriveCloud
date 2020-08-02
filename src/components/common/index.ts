@@ -7,6 +7,7 @@ export {
   StyledSafeAreaView,
   Row,
   StyledLogo,
+  Box,
 } from './styledComponents';
 export { theme } from './theme';
 export { TextField, Checkbox } from './fields';

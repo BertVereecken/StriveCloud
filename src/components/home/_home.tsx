@@ -4,6 +4,7 @@ import { StackNavigationProps, Navigation } from '../types';
 import axios from 'axios';
 import styled from 'styled-components/native';
 import { Tournaments } from './tournament';
+import { UpComingTournament } from './tournament/_tournamentTypes';
 
 const UPCOMING_EVENTS_URL = 'https://api.kayzr.com/api/tournaments/upcoming';
 const striveCloudLogo = require('../../../assets/images/logo.png');
@@ -44,9 +45,9 @@ const Home = ({ navigation, route }: StackNavigationProps<Navigation, 'Home'>) =
    * Open tournamentsDetailsPage and pass the tournamentId.
    * @param tournamentId
    */
-  const openTournamentPage = (tournamentId: string) => {
+  const openTournamentPage = (tournamentInfo: UpComingTournament) => {
     navigation.navigate('TournamentDetails', {
-      tournamentId,
+      tournamentInfo,
     });
   };
 
