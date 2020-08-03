@@ -17,7 +17,7 @@ const Container = styled.View`
   align-items: center;
 `;
 
-const SubSlide = ({ title, navigateToLogin, navigateToRegister }: subSlideProps) => {
+const SubSlide = React.memo(({ title, navigateToLogin, navigateToRegister }: subSlideProps) => {
   return (
     <Container>
       <StyledTitle size="1.5rem">{title}</StyledTitle>
@@ -26,6 +26,6 @@ const SubSlide = ({ title, navigateToLogin, navigateToRegister }: subSlideProps)
       <Button label="Join us, it's free" variant="default" onPress={navigateToRegister} />
     </Container>
   );
-};
+});
 
 export { SubSlide };

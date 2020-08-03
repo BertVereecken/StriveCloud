@@ -3,6 +3,7 @@ import { View, StyleSheet, Dimensions } from 'react-native';
 const { width, height } = Dimensions.get('window');
 import styled from 'styled-components/native';
 import { Container } from '../../common';
+
 export const SLIDE_HEIGHT = 0.6 * height;
 
 interface SlideProps {
@@ -32,7 +33,7 @@ const Label = styled.Text`
   line-height: 3rem;
 `;
 
-const Slide = ({ label }: SlideProps) => {
+const Slide = React.memo(({ label }: SlideProps) => {
   const transform = [
     { translateY: (SLIDE_HEIGHT - 100) / 2 },
     { translateX: -(width / 2 - 50) },
@@ -46,6 +47,6 @@ const Slide = ({ label }: SlideProps) => {
       </View>
     </Container>
   );
-};
+});
 
 export { Slide };

@@ -1,6 +1,5 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components/native';
-
 interface TextFieldProps {
   name: string;
   autoCompleteType: string;
@@ -27,35 +26,37 @@ const Wrapper = styled.View`
   border-radius: 0.3rem;
 `;
 
-const TextField = ({
-  autoCompleteType,
-  placeholder,
-  textContentType,
-  Icon,
-  handleUserInput,
-  name,
-}: TextFieldProps) => {
-  const handleChange = useCallback(
-    (e) => {
-      console.log(e, name);
-      handleUserInput(e, name);
-    },
-    [handleUserInput, name],
-  );
-  return (
-    <Wrapper>
-      {Icon && <Icon />}
-      <StyledTextField
-        textContentType={textContentType}
-        autoCapitalize="words"
-        autoCompleteType={autoCompleteType}
-        keyboardAppearance="dark"
-        onChangeText={handleChange}
-        placeholder={placeholder}
-        underlineColorAndroid="transparent"
-      />
-    </Wrapper>
-  );
-};
+const TextField = React.memo(
+  ({
+    autoCompleteType,
+    placeholder,
+    textContentType,
+    Icon,
+    handleUserInput,
+    name,
+  }: TextFieldProps) => {
+    const handleChange = useCallback(
+      (e) => {
+        handleUserInput(e, name);
+      },
+      [handleUserInput, name],
+    );
+
+    return (
+      <Wrapper>
+        {Icon && <Icon />}
+        <StyledTextField
+          textContentType={textContentType}
+          autoCapitalize="words"
+          autoCompleteType={autoCompleteType}
+          keyboardAppearance="dark"
+          onChangeText={handleChange}
+          placeholder={placeholder}
+          underlineColorAndroid="transparent"
+        />
+      </Wrapper>
+    );
+  },
+);
 
 export { TextField };

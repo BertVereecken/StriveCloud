@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { StyledText, Button, Container, StyledTitle, BodyContainer, Spinner } from '../../common';
+import { Button, Container, StyledTitle, BodyContainer, Spinner } from '../../common';
 import axios from 'axios';
 import { Navigation, StackNavigationProps } from '../../types';
 import styled from 'styled-components/native';
@@ -36,6 +36,10 @@ const BannerHeader = styled.View`
   padding: 1rem;
 `;
 
+const StyledBodyContainer = styled(BodyContainer)`
+  align-items: center;
+`;
+
 const TournamentsDetails = ({
   navigation,
   route,
@@ -44,9 +48,7 @@ const TournamentsDetails = ({
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
-  console.log(data);
   const tournamentInfo = useMemo(() => {
-    console.log(route.params.tournamentInfo);
     return route.params.tournamentInfo;
   }, [route.params.tournamentInfo]);
 
@@ -92,7 +94,7 @@ const TournamentsDetails = ({
             </BannerHeader>
           </BannerWrapper>
 
-          <BodyContainer style={{ alignItems: 'center' }}>
+          <StyledBodyContainer>
             <GameModeInfo gameMode={data.gameMode} tournamentInfo={tournamentInfo} />
             <PrizePoolInfo prizePoolData={data.prizepool} />
             <Row>
@@ -100,7 +102,7 @@ const TournamentsDetails = ({
               <Button label="Sign up" width="8rem" />
             </Row>
             <Button label="Terug" onPress={goBack} width="8rem" />
-          </BodyContainer>
+          </StyledBodyContainer>
         </>
       )}
     </Container>

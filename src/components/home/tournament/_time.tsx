@@ -1,4 +1,4 @@
-import React, { ElementType } from 'react';
+import React, { ElementType, useCallback } from 'react';
 import { StyledText } from '../../common';
 import { Row } from '../../common/styledComponents';
 
@@ -9,8 +9,8 @@ interface ITimeProps {
   onlyDisplayTime?: boolean;
 }
 
-const Time = ({ time, Icon, color, onlyDisplayTime }: ITimeProps) => {
-  const formattedTime = () => {
+const Time = React.memo(({ time, Icon, color, onlyDisplayTime }: ITimeProps) => {
+  const formattedTime = useCallback(() => {
     const unformattedDate = new Date(time);
 
     if (onlyDisplayTime) {
@@ -31,7 +31,7 @@ const Time = ({ time, Icon, color, onlyDisplayTime }: ITimeProps) => {
       });
       return newDate;
     }
-  };
+  }, [time, onlyDisplayTime]);
 
   return (
     <Row>
@@ -39,6 +39,6 @@ const Time = ({ time, Icon, color, onlyDisplayTime }: ITimeProps) => {
       <StyledText color={color}>{formattedTime()}</StyledText>
     </Row>
   );
-};
+});
 
 export { Time };

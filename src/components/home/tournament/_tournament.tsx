@@ -26,8 +26,6 @@ const StyledTouchableHightlight = styled.TouchableHighlight`
 
 const Tournament = ({ item, separators, openTournamentPage }: ITournamentProps) => {
   const handlePress = useCallback(() => {
-    console.log(item);
-
     openTournamentPage(item);
   }, [item, openTournamentPage]);
 

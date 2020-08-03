@@ -17,7 +17,7 @@ const HeaderPart = styled.View`
   align-items: center;
 `;
 
-const Home = ({ navigation, route }: StackNavigationProps<Navigation, 'Home'>) => {
+const Home = ({ navigation }: StackNavigationProps<Navigation, 'Home'>) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -51,7 +51,6 @@ const Home = ({ navigation, route }: StackNavigationProps<Navigation, 'Home'>) =
     });
   };
 
-  console.log(data);
   return (
     <Container>
       <HeaderPart>

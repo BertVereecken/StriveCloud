@@ -20,6 +20,8 @@ const StyledView = styled.View`
   flex: 1;
   background-color: ${({ bgColor }) => bgColor};
   ${StyleSheet.absoluteFillObject};
+  border-top-left-radius: 7rem;
+  border-bottom-left-radius: 7rem;
 `;
 
 const HeaderPart = styled.View`
@@ -76,8 +78,9 @@ const Login = ({ navigation }: StackNavigationProps<Navigation, 'Login'>) => {
     [setUserInput, userInput],
   );
 
+  // Boolean to indicate whether or not the loginsCredentials are valid or not
   const loginCredentialsAreValid = useMemo(() => {
-    return userInput.email === 'test' && userInput.password === 'test';
+    return userInput.email === 'info@strivecloud.io' && userInput.password === 'strivecloud';
   }, [userInput]);
 
   const goToHomeScreen = useCallback(() => {
@@ -92,13 +95,7 @@ const Login = ({ navigation }: StackNavigationProps<Navigation, 'Login'>) => {
         <StyledLogo resizeMode="contain" source={striveCloudLogo} />
       </HeaderPart>
       <MiddlePart>
-        <StyledView
-          bgColor="white"
-          style={{
-            borderTopLeftRadius: '7rem',
-            borderBottomLeftRadius: '7rem',
-          }}
-        />
+        <StyledView bgColor="white" />
         <BodyContainer>
           <StyledTitle size="1.5rem" margin="0 0 2rem 0">
             Log in here

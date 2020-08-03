@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { Slide, SLIDE_HEIGHT, SubSlide } from './slide';
 import styled from 'styled-components/native';
 import { StackNavigationProps, Navigation } from '../types';
@@ -30,6 +30,12 @@ const FooterContent = styled.View`
   border-top-left-radius: ${BORDER_RADIUS};
 `;
 
+const StyledView = styled.View`
+  flex: 1;
+  background-color: ${({ bgColor }) => bgColor};
+  ${StyleSheet.absoluteFillObject};
+`;
+
 const Onboarding = ({ navigation }: StackNavigationProps<Navigation, 'Onboarding'>) => {
   const goToLoginComponent = useCallback(() => {
     navigation.navigate('Login');
@@ -46,12 +52,7 @@ const Onboarding = ({ navigation }: StackNavigationProps<Navigation, 'Onboarding
       </Header>
 
       <Footer>
-        <View
-          style={{
-            ...StyleSheet.absoluteFillObject,
-            backgroundColor: 'rgba(38, 10, 145, 1)',
-          }}
-        />
+        <StyledView bgColor="rgba(38, 10, 145, 1)" />
         <FooterContent>
           <SubSlide
             title="Welcome"

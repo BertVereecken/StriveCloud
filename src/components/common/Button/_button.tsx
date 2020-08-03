@@ -41,27 +41,22 @@ const ButtonText = styled.Text`
   text-align: center;
 `;
 
-const Button = ({
-  label,
-  variant = 'primary',
-  onPress,
-  disabled = false,
-  width,
-  margin,
-}: ButtonProps) => {
-  return (
-    <ButtonWrapper>
-      <StyledButton
-        onPress={onPress}
-        variant={variant}
-        disabled={disabled}
-        width={width}
-        margin={margin}
-      >
-        <ButtonText variant={variant}>{label}</ButtonText>
-      </StyledButton>
-    </ButtonWrapper>
-  );
-};
+const Button = React.memo(
+  ({ label, variant = 'primary', onPress, disabled = false, width, margin }: ButtonProps) => {
+    return (
+      <ButtonWrapper>
+        <StyledButton
+          onPress={onPress}
+          variant={variant}
+          disabled={disabled}
+          width={width}
+          margin={margin}
+        >
+          <ButtonText variant={variant}>{label}</ButtonText>
+        </StyledButton>
+      </ButtonWrapper>
+    );
+  },
+);
 
 export { Button };

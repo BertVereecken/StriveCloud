@@ -19,6 +19,8 @@ const StyledView = styled.View`
   flex: 1;
   background-color: ${({ bgColor }) => bgColor};
   ${StyleSheet.absoluteFillObject};
+  border-top-left-radius: 7rem;
+  border-bottom-left-radius: 7rem;
 `;
 
 const HeaderPart = styled.View`
@@ -75,7 +77,7 @@ const Register = ({ navigation }: StackNavigationProps<Navigation, 'Register'>) 
   );
 
   const loginCredentialsAreValid = useMemo(() => {
-    return userInput.email === 'test' && userInput.password === 'test';
+    return userInput.email === 'info@strivecloud.io' && userInput.password === 'strivecloud';
   }, [userInput]);
 
   return (
@@ -84,13 +86,7 @@ const Register = ({ navigation }: StackNavigationProps<Navigation, 'Register'>) 
         <StyledLogo resizeMode="contain" source={striveCloudLogo} />
       </HeaderPart>
       <MiddlePart>
-        <StyledView
-          bgColor="white"
-          style={{
-            borderTopLeftRadius: '7rem',
-            borderBottomLeftRadius: '7rem',
-          }}
-        />
+        <StyledView bgColor="white" />
         <BodyContainer>
           <StyledTitle size="1.5rem" margin="0 0 2rem 0">
             Create account
